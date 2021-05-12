@@ -1,4 +1,5 @@
 const fs = require('fs');
+const http = require('http')
 const inquirer = require('inquirer');
 
 const managerQuestions = [
@@ -67,3 +68,6 @@ const internQuestions = [
         message: "What is your intern's school?"
     }
 ]
+inquirer.prompt(managerQuestions).then((answers) => {
+    console.log(JSON(answers));
+});
