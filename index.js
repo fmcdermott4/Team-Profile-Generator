@@ -112,7 +112,7 @@ function menu() {
 };
 function addEngineer() {
     inquirer.prompt(engineerQuestions).then((answers) => {
-        engineers.push(new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.EngineerGitHub));
+        engineers.push(new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGitHub));
         menu();
     })
 };
@@ -124,5 +124,67 @@ function addIntern() {
     })
 };
 function finish() {
-    console.log("finish function");
+    fs.unlink('./dist/index.html', function (err) {
+        if (err) throw err;
+        console.log('File deleted!');
+    });
+
+    fs.writeFile('./dist/index.html', compileHtml() + `</div></main></body></html>`, function (err) {
+        if (err) throw err;
+        console.log('New File Created!');
+    });
+};
+function compileHtml() {
+    let managerCard = "";
+    let engineerCard = "";
+    let internCard = "";
+    managerCard = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+        <title>Document</title>
+    </head>
+    <body class="row container-fluid col-12 justify-content-around">
+    <header class="container-fluid bg-dark text-light mb-5 p-3">
+        <div>
+            <h1 class="d-flex justify-content-around">My Team</h1>
+            <h3 class="ml-auto">
+            </h3>
+        </div>
+    </header>
+    <main class="row container-fluid d-flex justify-content-around col-9">
+        <div class="card text-white bg-info mb-3 col-xl-3 col-md-5 col-sm-9">
+            <div class="card-header">${manager[0].name}</div>
+            <div class="card-body">
+            <h5 class="card-title">Manager</h5>
+            <p class="card-text">ID: ${manager[0].id}</p>
+            <p class="card-text">Email: <a href="mailto:${manager[0].email}">${manager[0].email}</a></p>
+            <p class="card-text">Phone: ${manager[0].officeNumber}</p>
+        </div></div>    
+    `
+    for( i = 0; i < engineers.length; i++) {
+        engineerCard += `<div class="card text-white bg-info mb-3 col-xl-3 col-md-5 col-sm-9">
+        <div class="card-header">${engineers[i].name}</div>
+        <div class="card-body">
+        <h5 class="card-title">Engineer</h5>
+        <p class="card-text">ID: ${engineers[i].id}</p>
+        <p class="card-text">Email: <a href="mailto:${engineers[i].email}">${engineers[i].email}</a></p>
+        <p class="card-text">GitHub: ${engineers[i].gitHub}</p>
+        </div></div>`
+    }
+    for( i = 0; i < interns.length; i++) {
+        internCard += `<div class="card text-white bg-info mb-3 col-xl-3 col-md-5 col-sm-9">
+        <div class="card-header">${interns[i].name}</div>
+        <div class="card-body">
+        <h5 class="card-title">Intern</h5>
+        <p class="card-text">ID: ${interns[i].id}</p>
+        <p class="card-text">Email: <a href="mailto:${interns[i].email}">${interns[i].email}</a></p>
+        <p class="card-text">School: ${interns[i].school}</p>
+        </div></div>`
+    }
+    return managerCard + engineerCard +internCard;
 }
