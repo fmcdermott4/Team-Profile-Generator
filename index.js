@@ -74,7 +74,23 @@ const internQuestions = [
         message: "What is your intern's school?"
     }
 ]
+const menuOptions = [
+    {
+        type: 'list',
+        name: 'doNext',
+        message: 'What would you like to do next?',
+        choices: [
+            'Add Engineer to team',
+            'Add Intern to team',
+            'Finish'
+        ]
+    }
+]
+
 inquirer.prompt(managerQuestions).then((answers) => {
     manager = [new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerNumber)];
     console.log(manager);
+    inquirer.prompt(menuOptions).then((selection) => {
+        
+    })
 });
