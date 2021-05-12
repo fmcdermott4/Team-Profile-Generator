@@ -90,7 +90,39 @@ const menuOptions = [
 inquirer.prompt(managerQuestions).then((answers) => {
     manager = [new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerNumber)];
     console.log(manager);
+    menu()
+    }
+);
+function menu() {
     inquirer.prompt(menuOptions).then((selection) => {
-        
+        switch(selection.doNext){
+            case 'Add Engineer to team':
+                addEngineer();
+                break;
+            case 'Add Intern to team':
+                addIntern();
+                break;
+            case 'Finish':
+                finish();
+                break;
+            default:
+                console.log("error");
+        };
     })
-});
+};
+function addEngineer() {
+    inquirer.prompt(engineerQuestions).then((answers) => {
+        engineers.push(new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.EngineerGitHub));
+        menu();
+    })
+};
+function addIntern() {
+    inquirer.prompt(internQuestions).then((answers) => {
+        interns.push(new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool));
+        console.log(interns);
+        menu();
+    })
+};
+function finish() {
+    console.log("finish function");
+}
