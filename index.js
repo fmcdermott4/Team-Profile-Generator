@@ -21,7 +21,7 @@ const managerQuestions = [
     {
         type: 'input', 
         name: 'managerNumber',
-        message: "What is your manager's email?"
+        message: "What is your manager's phone number?"
     }
 ]
 const engineerQuestions = [
@@ -69,5 +69,5 @@ const internQuestions = [
     }
 ]
 inquirer.prompt(managerQuestions).then((answers) => {
-    console.log(JSON(answers));
+    console.log(answers);
 });
