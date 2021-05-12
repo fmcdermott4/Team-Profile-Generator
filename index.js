@@ -75,6 +75,6 @@ const internQuestions = [
     }
 ]
 inquirer.prompt(managerQuestions).then((answers) => {
-    console.log(answers)
-    // manager += new Manager(answers.)
+    manager = [new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerNumber)];
+    console.log(manager);
 });
