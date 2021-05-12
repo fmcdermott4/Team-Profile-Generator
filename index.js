@@ -119,19 +119,16 @@ function addEngineer() {
 function addIntern() {
     inquirer.prompt(internQuestions).then((answers) => {
         interns.push(new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool));
-        console.log(interns);
         menu();
     })
 };
 function finish() {
     fs.unlink('./dist/index.html', function (err) {
         if (err) throw err;
-        console.log('File deleted!');
     });
 
     fs.writeFile('./dist/index.html', compileHtml() + `</div></main></body></html>`, function (err) {
         if (err) throw err;
-        console.log('New File Created!');
     });
 };
 function compileHtml() {
