@@ -143,7 +143,7 @@ function compileHtml() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Bootstrap library -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-        <title>Document</title>
+        <title>Team Page</title>
     </head>
     <body class="row container-fluid col-12 justify-content-around">
     <header class="container-fluid bg-dark text-light mb-5 p-3">
