@@ -1,6 +1,12 @@
 const fs = require('fs');
 const http = require('http')
 const inquirer = require('inquirer');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require("./lib/Intern");
+let manager = [];
+let engineers = [];
+let interns = [];
 
 const managerQuestions = [
     {
@@ -69,5 +75,6 @@ const internQuestions = [
     }
 ]
 inquirer.prompt(managerQuestions).then((answers) => {
-    console.log(answers);
+    console.log(answers)
+    // manager += new Manager(answers.)
 });
